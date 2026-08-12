@@ -15,9 +15,6 @@ public class Employee {
     @Column(name = "EMPLOYEE_ID")
     private Long employeeId;
 
-    @Column(name = "FIRST_NAME", length = 20)
-    private String firstName;
-
     @Column(name = "LAST_NAME", nullable = false, length = 25)
     private String lastName;
 
@@ -88,6 +85,9 @@ public class Employee {
     public Integer getDepartmentId() {
         return departmentId;
     }
+
+    @Column(name = "FIRST_NAME", length = 20)
+    private String firstName;
 
     public void setEmployeeId(Long employeeId) {
         this.employeeId = employeeId;

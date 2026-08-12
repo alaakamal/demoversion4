@@ -1,0 +1,22 @@
+{
+    "sourceFile": "src/main/java/com/example/demo/exception/GlobalExceptionHandler.java",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1786492543805,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1786492556954,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,56 @@\n package com.example.demo.exception;\r\n \r\n+import java.time.LocalDateTime;\r\n+import java.util.HashMap;\r\n+import java.util.Map;\r\n+\r\n+import org.springframework.dao.DataIntegrityViolationException;\r\n+import org.springframework.http.HttpStatus;\r\n+import org.springframework.http.ResponseEntity;\r\n+import org.springframework.web.bind.annotation.ExceptionHandler;\r\n+import org.springframework.web.bind.annotation.RestControllerAdvice;\r\n+\r\n+@RestControllerAdvice\r\n public class GlobalExceptionHandler {\r\n \r\n-}\r\n+    @ExceptionHandler(RuntimeException.class)\r\n+    public ResponseEntity<Map<String, Object>> handleRuntimeException(\r\n+            RuntimeException ex) {\r\n+\r\n+        Map<String, Object> error = new HashMap<>();\r\n+        error.put(\"timestamp\", LocalDateTime.now());\r\n+        error.put(\"status\", HttpStatus.NOT_FOUND.value());\r\n+        error.put(\"error\", \"Not Found\");\r\n+        error.put(\"message\", ex.getMessage());\r\n+\r\n+        return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);\r\n+    }\r\n+\r\n+    @ExceptionHandler(DataIntegrityViolationException.class)\r\n+    public ResponseEntity<Map<String, Object>> handleDatabaseException(\r\n+            DataIntegrityViolationException ex) {\r\n+\r\n+        Map<String, Object> error = new HashMap<>();\r\n+        error.put(\"timestamp\", LocalDateTime.now());\r\n+        error.put(\"status\", HttpStatus.CONFLICT.value());\r\n+        error.put(\"error\", \"Database Constraint Violation\");\r\n+        error.put(\"message\",\r\n+                \"Cannot delete or update record because related records exist.\");\r\n+\r\n+        return new ResponseEntity<>(error, HttpStatus.CONFLICT);\r\n+    }\r\n+\r\n+    @ExceptionHandler(Exception.class)\r\n+    public ResponseEntity<Map<String, Object>> handleException(\r\n+            Exception ex) {\r\n+\r\n+        Map<String, Object> error = new HashMap<>();\r\n+        error.put(\"timestamp\", LocalDateTime.now());\r\n+        error.put(\"status\", HttpStatus.INTERNAL_SERVER_ERROR.value());\r\n+        error.put(\"error\", \"Internal Server Error\");\r\n+        error.put(\"message\", ex.getMessage());\r\n+\r\n+        return new ResponseEntity<>(error,\r\n+                HttpStatus.INTERNAL_SERVER_ERROR);\r\n+    }\r\n+}\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1786492543805,
+            "name": "Commit-0",
+            "content": "package com.example.demo.exception;\r\n\r\npublic class GlobalExceptionHandler {\r\n\r\n}\r\n"
+        }
+    ]
+}
