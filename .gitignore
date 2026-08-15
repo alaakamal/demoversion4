@@ -1,33 +1,65 @@
-HELP.md
+# Maven
 target/
-.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
+!.mvn/wrapper/maven-wrapper.jar
+.lh/
+.github/
 
-### STS ###
+# Maven Wrapper
+.mvn/wrapper/maven-wrapper.properties
+
+# STS / Spring Tools Suite
 .apt_generated
 .classpath
 .factorypath
 .project
-.settings
+.settings/
 .springBeans
-.sts4-cache
+.sts4-cache/
 
-### IntelliJ IDEA ###
-.idea
-*.iws
+# IntelliJ IDEA
+.idea/
 *.iml
 *.ipr
+*.iws
 
-### NetBeans ###
+# VS Code
+.vscode/
+
+# NetBeans
 /nbproject/private/
 /nbbuild/
 /dist/
 /nbdist/
 /.nb-gradle/
+
+# Gradle
 build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
-### VS Code ###
-.vscode/
+# Maven module targets
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# Logs
+*.log
+
+# History files
+.history/
+*.history
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+
+# Environment files
+.env
+
+# Keep GitHub workflows if used
+# Uncomment next line only if you want to ignore GitHub configuration
+# .github/

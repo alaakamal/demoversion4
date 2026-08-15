@@ -1,0 +1,34 @@
+{
+    "sourceFile": ".gitignore",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 4,
+            "patches": [
+                {
+                    "date": 1786798308349,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1786798379735,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,15 @@\n .idea\n *.iws\n *.iml\n *.ipr\n+*.vscode\n+*.mvn\n+*.history\n+*.Ih\n+*.github\n \n+\n ### NetBeans ###\n /nbproject/private/\n /nbbuild/\n /dist/\n"
+                },
+                {
+                    "date": 1786798544219,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,40 +1,63 @@\n-HELP.md\n+# Maven\n target/\n-.mvn/wrapper/maven-wrapper.jar\n-!**/src/main/**/target/\n-!**/src/test/**/target/\n-.ih\n-.history\n-### STS ###\n+!.mvn/wrapper/maven-wrapper.jar\n+\n+# Maven Wrapper\n+.mvn/wrapper/maven-wrapper.properties\n+\n+# STS / Spring Tools Suite\n .apt_generated\n .classpath\n .factorypath\n .project\n-.settings\n+.settings/\n .springBeans\n-.sts4-cache\n+.sts4-cache/\n \n-### IntelliJ IDEA ###\n-.idea\n-*.iws\n+# IntelliJ IDEA\n+.idea/\n *.iml\n *.ipr\n-*.vscode\n-*.mvn\n-*.history\n-*.Ih\n-*.github\n+*.iws\n \n+# VS Code\n+.vscode/\n \n-### NetBeans ###\n+# NetBeans\n /nbproject/private/\n /nbbuild/\n /dist/\n /nbdist/\n /.nb-gradle/\n+\n+# Gradle\n build/\n !**/src/main/**/build/\n !**/src/test/**/build/\n \n-### VS Code ###\n-.vscode/\n+# Maven module targets\n+!**/src/main/**/target/\n+!**/src/test/**/target/\n+\n+# Logs\n+*.log\n+\n+# History files\n+.history/\n+*.history\n+\n+# OS generated files\n+.DS_Store\n+Thumbs.db\n+\n+# Temporary files\n+*.tmp\n+*.bak\n+*.swp\n+\n+# Environment files\n+.env\n+\n+# Keep GitHub workflows if used\n+# Uncomment next line only if you want to ignore GitHub configuration\n+# .github/\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1786799097561,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,10 @@\n # Maven\n target/\n !.mvn/wrapper/maven-wrapper.jar\n+.history/\n+.Ih/\n+.github/\n \n # Maven Wrapper\n .mvn/wrapper/maven-wrapper.properties\n \n"
+                },
+                {
+                    "date": 1786799149549,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,8 @@\n # Maven\n target/\n !.mvn/wrapper/maven-wrapper.jar\n-.history/\n-.Ih/\n+.lh/\n .github/\n \n # Maven Wrapper\n .mvn/wrapper/maven-wrapper.properties\n"
+                }
+            ],
+            "date": 1786798308349,
+            "name": "Commit-0",
+            "content": "HELP.md\ntarget/\n.mvn/wrapper/maven-wrapper.jar\n!**/src/main/**/target/\n!**/src/test/**/target/\n.ih\n.history\n### STS ###\n.apt_generated\n.classpath\n.factorypath\n.project\n.settings\n.springBeans\n.sts4-cache\n\n### IntelliJ IDEA ###\n.idea\n*.iws\n*.iml\n*.ipr\n\n### NetBeans ###\n/nbproject/private/\n/nbbuild/\n/dist/\n/nbdist/\n/.nb-gradle/\nbuild/\n!**/src/main/**/build/\n!**/src/test/**/build/\n\n### VS Code ###\n.vscode/\n"
+        }
+    ]
+}
