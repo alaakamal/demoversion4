@@ -3,11 +3,15 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 1,
             "patches": [
                 {
                     "date": 1786796907872,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1786799718609,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,5 +10,13 @@\n spring.jpa.hibernate.ddl-auto=none\n spring.jpa.show-sql=true\n spring.jpa.properties.hibernate.format_sql=true\n spring.security.user.name=admin\n-spring.security.user.password=admin123\n\\ No newline at end of file\n+spring.security.user.password=admin123\n+\n+logging.level.root=INFO\n+logging.level.com.example.demo=DEBUG\n+\n+logging.file.name=logs/demo.log\n+\n+logging.pattern.console=%d{yyyy-MM-dd HH:mm:ss} [%level] %logger{36} - %msg%n\n+logging.pattern.file=%d{yyyy-MM-dd HH:mm:ss} [%level] %logger{36} - %msg%n\n\\ No newline at end of file\n"
                 }
             ],
             "date": 1786796907871,
