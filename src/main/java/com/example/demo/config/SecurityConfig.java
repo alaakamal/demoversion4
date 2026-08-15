@@ -1,5 +1,6 @@
 package com.example.demo.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.config.Customizer;
 import org.springframework.context.annotation.Bean;
 
@@ -14,11 +15,13 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 
     @Bean
-    public InMemoryUserDetailsManager userDetailsService() {
+    public InMemoryUserDetailsManager userDetailsService(
+            @Value("${spring.security.user.name}") String username,
+            @Value("${spring.security.user.password}") String password) {
 
         UserDetails user = User.builder()
-                .username("admin")
-                .password("{noop}admin123")
+                .username(username)
+                .password("{noop}" + password)
                 .roles("ADMIN")
                 .build();
 
