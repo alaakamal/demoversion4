@@ -18,6 +18,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class SecurityConfig {
 
+        @SuppressWarnings("deprecation")
         @Bean
         public PasswordEncoder passwordEncoder() {
                 return NoOpPasswordEncoder.getInstance();
