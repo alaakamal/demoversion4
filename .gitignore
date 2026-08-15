@@ -1,6 +1,8 @@
 # Maven
 target/
 !.mvn/wrapper/maven-wrapper.jar
+.lh/
+.github/
 
 # Maven Wrapper
 .mvn/wrapper/maven-wrapper.properties
