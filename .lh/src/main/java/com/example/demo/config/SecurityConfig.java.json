@@ -1,0 +1,30 @@
+{
+    "sourceFile": "src/main/java/com/example/demo/config/SecurityConfig.java",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1786796601013,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1786797188786,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,19 @@\n package com.example.demo.config;\r\n \r\n import org.springframework.context.annotation.Bean;\r\n import org.springframework.context.annotation.Configuration;\r\n+\r\n+import org.springframework.security.config.Customizer;\r\n import org.springframework.security.config.annotation.web.builders.HttpSecurity;\r\n+\r\n+import org.springframework.security.core.userdetails.User;\r\n+import org.springframework.security.core.userdetails.UserDetails;\r\n+\r\n+import org.springframework.security.provisioning.InMemoryUserDetailsManager;\r\n+\r\n+import org.springframework.security.web.SecurityFilterChain;\r\n+\r\n @Configuration\r\n public class SecurityConfig {\r\n \r\n     @Bean\r\n@@ -24,9 +34,12 @@\n \r\n         http\r\n                 .csrf(csrf -> csrf.disable())\r\n                 .authorizeHttpRequests(auth -> auth\r\n-                        .anyRequest().authenticated())\r\n+                        .requestMatchers(\"/api/**\")\r\n+                        .authenticated()\r\n+                        .anyRequest()\r\n+                        .permitAll())\r\n                 .httpBasic(Customizer.withDefaults());\r\n \r\n         return http.build();\r\n     }\r\n"
+                },
+                {
+                    "date": 1786797237831,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,10 +2,8 @@\n \r\n import org.springframework.context.annotation.Bean;\r\n import org.springframework.context.annotation.Configuration;\r\n \r\n-\r\n-import org.springframework.security.config.Customizer;\r\n import org.springframework.security.config.annotation.web.builders.HttpSecurity;\r\n \r\n import org.springframework.security.core.userdetails.User;\r\n import org.springframework.security.core.userdetails.UserDetails;\r\n@@ -21,9 +19,9 @@\n     public InMemoryUserDetailsManager userDetailsService() {\r\n \r\n         UserDetails user = User.builder()\r\n                 .username(\"admin\")\r\n-                .password(\"{noop}admin123\")\r\n+                .password(\"admin123\")\r\n                 .roles(\"ADMIN\")\r\n                 .build();\r\n \r\n         return new InMemoryUserDetailsManager(user);\r\n"
+                },
+                {
+                    "date": 1786797342665,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,12 @@\n package com.example.demo.config;\r\n \r\n+import org.springframework.cglib.core.Customizer;\r\n import org.springframework.context.annotation.Bean;\r\n+import org.springframework.security.config.Customizer;\r\n+import org.springframework.security.config.annotation.web.builders.HttpSecurity;\r\n import org.springframework.context.annotation.Configuration;\r\n-\r\n-\r\n+import org.springframework.security.config.Customizer;\r\n import org.springframework.security.core.userdetails.User;\r\n import org.springframework.security.core.userdetails.UserDetails;\r\n \r\n import org.springframework.security.provisioning.InMemoryUserDetailsManager;\r\n"
+                }
+            ],
+            "date": 1786796601013,
+            "name": "Commit-0",
+            "content": "package com.example.demo.config;\r\n\r\nimport org.springframework.context.annotation.Bean;\r\nimport org.springframework.context.annotation.Configuration;\r\nimport org.springframework.security.config.annotation.web.builders.HttpSecurity;\r\n@Configuration\r\npublic class SecurityConfig {\r\n\r\n    @Bean\r\n    public InMemoryUserDetailsManager userDetailsService() {\r\n\r\n        UserDetails user = User.builder()\r\n                .username(\"admin\")\r\n                .password(\"{noop}admin123\")\r\n                .roles(\"ADMIN\")\r\n                .build();\r\n\r\n        return new InMemoryUserDetailsManager(user);\r\n    }\r\n\r\n    @Bean\r\n    public SecurityFilterChain securityFilterChain(HttpSecurity http)\r\n            throws Exception {\r\n\r\n        http\r\n                .csrf(csrf -> csrf.disable())\r\n                .authorizeHttpRequests(auth -> auth\r\n                        .anyRequest().authenticated())\r\n                .httpBasic(Customizer.withDefaults());\r\n\r\n        return http.build();\r\n    }\r\n}"
+        }
+    ]
+}
