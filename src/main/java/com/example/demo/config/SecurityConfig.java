@@ -1,52 +1,51 @@
 package com.example.demo.config;
 
+import com.example.demo.security.JwtAuthenticationFilter;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 public class SecurityConfig {
 
-        @SuppressWarnings("deprecation")
-        @Bean
-        public PasswordEncoder passwordEncoder() {
-                return NoOpPasswordEncoder.getInstance();
-        }
+    private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
-        @Bean
-        public InMemoryUserDetailsManager userDetailsService() {
+    public SecurityConfig(
+            JwtAuthenticationFilter jwtAuthenticationFilter) {
 
-                UserDetails user = User.builder()
-                                .username("admin")
-                                .password("admin123")
-                                .roles("ADMIN")
-                                .build();
+        this.jwtAuthenticationFilter = jwtAuthenticationFilter;
+    }
 
-                return new InMemoryUserDetailsManager(user);
-        }
+    @Bean
+    public SecurityFilterChain securityFilterChain(
+            HttpSecurity http) throws Exception {
 
-        @Bean
-        public SecurityFilterChain securityFilterChain(HttpSecurity http)
-                        throws Exception {
+        http
+                .csrf(csrf -> csrf.disable())
 
-                http
-                                .csrf(csrf -> csrf.disable())
-                                .authorizeHttpRequests(auth -> auth
-                                                .anyRequest()
-                                                .authenticated())
-                                .httpBasic(Customizer.withDefaults());
+                .sessionManagement(session -> session.sessionCreationPolicy(
+                        SessionCreationPolicy.STATELESS))
 
-                return http.build();
-        }
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers(
+                                "/auth/**",
+                                "/swagger-ui/**",
+                                "/swagger-ui.html",
+                                "/v3/api-docs/**")
+                        .permitAll()
+                        .anyRequest()
+                        .authenticated())
+
+                .addFilterBefore(
+                        jwtAuthenticationFilter,
+                        UsernamePasswordAuthenticationFilter.class);
+
+        return http.build();
+    }
 }
