@@ -2,6 +2,7 @@ package com.example.demo.entity;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Date;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -28,7 +29,7 @@ public class Employee {
     private String phoneNumber;
 
     @Column(name = "HIRE_DATE", nullable = false)
-    private LocalDate hireDate;
+    private Date hireDate;
 
     @Column(name = "JOB_ID", nullable = false, length = 10)
     private String jobId;
@@ -65,7 +66,7 @@ public class Employee {
         return phoneNumber;
     }
 
-    public LocalDate getHireDate() {
+    public Date getHireDate() {
         return hireDate;
     }
 
@@ -109,7 +110,7 @@ public class Employee {
         this.phoneNumber = phoneNumber;
     }
 
-    public void setHireDate(LocalDate hireDate) {
+    public void setHireDate(Date hireDate) {
         this.hireDate = hireDate;
     }
 

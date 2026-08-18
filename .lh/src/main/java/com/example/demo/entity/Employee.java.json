@@ -3,11 +3,15 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 1,
             "patches": [
                 {
                     "date": 1786528502084,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1787084492536,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,9 @@\n package com.example.demo.entity;\r\n \r\n import java.math.BigDecimal;\r\n import java.time.LocalDate;\r\n+import java.util.Date;\r\n \r\n import jakarta.persistence.Column;\r\n import jakarta.persistence.Entity;\r\n import jakarta.persistence.Id;\r\n@@ -27,9 +28,9 @@\n     @Column(name = \"PHONE_NUMBER\", length = 20)\r\n     private String phoneNumber;\r\n \r\n     @Column(name = \"HIRE_DATE\", nullable = false)\r\n-    private LocalDate hireDate;\r\n+    private Date hireDate;\r\n \r\n     @Column(name = \"JOB_ID\", nullable = false, length = 10)\r\n     private String jobId;\r\n \r\n@@ -64,9 +65,9 @@\n     public String getPhoneNumber() {\r\n         return phoneNumber;\r\n     }\r\n \r\n-    public LocalDate getHireDate() {\r\n+    public Date getHireDate() {\r\n         return hireDate;\r\n     }\r\n \r\n     public String getJobId() {\r\n@@ -108,9 +109,9 @@\n     public void setPhoneNumber(String phoneNumber) {\r\n         this.phoneNumber = phoneNumber;\r\n     }\r\n \r\n-    public void setHireDate(LocalDate hireDate) {\r\n+    public void setHireDate(Date hireDate) {\r\n         this.hireDate = hireDate;\r\n     }\r\n \r\n     public void setJobId(String jobId) {\r\n"
                 }
             ],
             "date": 1786528502084,
