@@ -16,131 +16,130 @@ import org.springframework.web.multipart.MultipartFile;
 import com.example.demo.entity.Employee;
 import com.example.demo.service.EmployeeService;
 import com.example.demo.service.ExcelService;
-import org.springframework.http.MediaType;
 
 @RestController
 @RequestMapping("/api/employees")
 public class EmployeeController {
 
-    private static final Logger log = LoggerFactory.getLogger(EmployeeController.class);
+        private static final Logger log = LoggerFactory.getLogger(EmployeeController.class);
 
-    private final EmployeeService employeeService;
-    private final ExcelService excelService;
+        private final EmployeeService employeeService;
+        private final ExcelService excelService;
 
-    public EmployeeController(
-            EmployeeService employeeService,
-            ExcelService excelService) {
+        public EmployeeController(
+                        EmployeeService employeeService,
+                        ExcelService excelService) {
 
-        this.employeeService = employeeService;
-        this.excelService = excelService;
-    }
+                this.employeeService = employeeService;
+                this.excelService = excelService;
+        }
 
-    @GetMapping
-    public List<Employee> getAllEmployees() {
+        @GetMapping
+        public List<Employee> getAllEmployees() {
 
-        log.info("GET /api/employees called");
+                log.info("GET /api/employees called");
 
-        List<Employee> employees = employeeService.getAllEmployees();
+                List<Employee> employees = employeeService.getAllEmployees();
 
-        log.info("Retrieved {} employees", employees.size());
+                log.info("Retrieved {} employees", employees.size());
 
-        return employees;
-    }
+                return employees;
+        }
 
-    @GetMapping("/{id}")
-    public Employee getEmployeeById(
-            @PathVariable Long id) {
+        @GetMapping("/{id}")
+        public Employee getEmployeeById(
+                        @PathVariable Long id) {
 
-        log.info("GET /api/employees/{} called", id);
+                log.info("GET /api/employees/{} called", id);
 
-        Employee employee = employeeService.getEmployeeById(id)
-                .orElseThrow(() -> {
-                    log.error(
-                            "Employee not found with id {}",
-                            id);
+                Employee employee = employeeService.getEmployeeById(id)
+                                .orElseThrow(() -> {
+                                        log.error(
+                                                        "Employee not found with id {}",
+                                                        id);
 
-                    return new RuntimeException(
-                            "Employee not found with id: " + id);
-                });
+                                        return new RuntimeException(
+                                                        "Employee not found with id: " + id);
+                                });
 
-        log.info("Employee found with id {}", id);
+                log.info("Employee found with id {}", id);
 
-        return employee;
-    }
+                return employee;
+        }
 
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public Employee createEmployee(
-            @RequestBody Employee employee) {
+        @PostMapping
+        @ResponseStatus(HttpStatus.CREATED)
+        public Employee createEmployee(
+                        @RequestBody Employee employee) {
 
-        log.info(
-                "Creating employee {}",
-                employee.getEmployeeId());
+                log.info(
+                                "Creating employee {}",
+                                employee.getEmployeeId());
 
-        Employee savedEmployee = employeeService.saveEmployee(employee);
+                Employee savedEmployee = employeeService.saveEmployee(employee);
 
-        log.info("Employee created successfully");
+                log.info("Employee created successfully");
 
-        return savedEmployee;
-    }
+                return savedEmployee;
+        }
 
-    @PutMapping("/{id}")
-    public Employee updateEmployee(
-            @PathVariable Long id,
-            @RequestBody Employee employee) {
+        @PutMapping("/{id}")
+        public Employee updateEmployee(
+                        @PathVariable Long id,
+                        @RequestBody Employee employee) {
 
-        log.info("Updating employee {}", id);
+                log.info("Updating employee {}", id);
 
-        Employee updatedEmployee = employeeService.updateEmployee(
-                id,
-                employee);
+                Employee updatedEmployee = employeeService.updateEmployee(
+                                id,
+                                employee);
 
-        log.info(
-                "Employee {} updated successfully",
-                id);
+                log.info(
+                                "Employee {} updated successfully",
+                                id);
 
-        return updatedEmployee;
-    }
+                return updatedEmployee;
+        }
 
-    @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteEmployee(
-            @PathVariable Long id) {
+        @DeleteMapping("/{id}")
+        @ResponseStatus(HttpStatus.NO_CONTENT)
+        public void deleteEmployee(
+                        @PathVariable Long id) {
 
-        log.info("Deleting employee {}", id);
+                log.info("Deleting employee {}", id);
 
-        employeeService.deleteEmployee(id);
+                employeeService.deleteEmployee(id);
 
-        log.info(
-                "Employee {} deleted successfully",
-                id);
-    }
+                log.info(
+                                "Employee {} deleted successfully",
+                                id);
+        }
 
-    @GetMapping("/export")
-    public ResponseEntity<byte[]> exportEmployees()
-            throws Exception {
+        @GetMapping("/export")
+        public ResponseEntity<byte[]> exportEmployees()
+                        throws Exception {
 
-        log.info("Export employees request received");
+                log.info("Export employees request received");
 
-        byte[] excelFile = excelService.exportEmployees();
+                byte[] excelFile = excelService.exportEmployees();
 
-        return ResponseEntity.ok()
-                .header(
-                        HttpHeaders.CONTENT_DISPOSITION,
-                        "attachment; filename=employees.xlsx")
-                .contentType(
-                        MediaType.APPLICATION_OCTET_STREAM)
-                .body(excelFile);
-    }
+                return ResponseEntity.ok()
+                                .header(
+                                                HttpHeaders.CONTENT_DISPOSITION,
+                                                "attachment; filename=employees.xlsx")
+                                .contentType(
+                                                MediaType.APPLICATION_OCTET_STREAM)
+                                .body(excelFile);
+        }
 
-    @PostMapping(value = "/import", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<String> importEmployees(
-            @RequestParam("file") MultipartFile file)
-            throws Exception {
+        @PostMapping(value = "/import", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+        public ResponseEntity<String> importEmployees(
+                        @RequestParam("file") MultipartFile file)
+                        throws Exception {
 
-        excelService.importEmployees(file);
+                excelService.importEmployees(file);
 
-        return ResponseEntity.ok(
-                "Employees imported successfully");
-    }
+                return ResponseEntity.ok(
+                                "Employees imported successfully");
+        }
 }
