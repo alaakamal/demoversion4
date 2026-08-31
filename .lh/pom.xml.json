@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 16,
+            "activePatchIndex": 17,
             "patches": [
                 {
                     "date": 1786796478277,
@@ -72,6 +72,10 @@
                 {
                     "date": 1787082733871,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,8 +84,9 @@\n \t\t\t<groupId>org.springframework.boot</groupId>\r\n \t\t\t<artifactId>spring-boot-starter-test</artifactId>\r\n \t\t\t<scope>test</scope>\r\n \t\t</dependency>\r\n+\r\n \t\t<dependency>\r\n \t\t\t<groupId>org.apache.poi</groupId>\r\n \t\t\t<artifactId>poi-ooxml</artifactId>\r\n \t\t\t<version>5.4.1</version>\r\n"
+                },
+                {
+                    "date": 1788167245772,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n \r\n \t<parent>\r\n \t\t<groupId>org.springframework.boot</groupId>\r\n \t\t<artifactId>spring-boot-starter-parent</artifactId>\r\n-\t\t<version>4.1.0</version>\r\n+\t\t<version>4.1.1</version>\r\n \t\t<relativePath/>\r\n \t</parent>\r\n \r\n \t<groupId>com.example</groupId>\r\n"
                 }
             ],
             "date": 1786796478277,
